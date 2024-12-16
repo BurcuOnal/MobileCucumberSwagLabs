@@ -1,0 +1,38 @@
+[
+  {
+    "key": "standard_userBtn",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-standard_user\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "loginBtn",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "userNameTextBox",
+    "androidValue": "//android.widget.EditText[@content-desc=\"test-Username\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "passwordTextBox",
+    "androidValue": "//android.widget.EditText[@content-desc=\"test-Password\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "loginErrorMessage",
+    "androidValue": "//android.widget.TextView[@text=\"Username and password do not match any user in this service.\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  }
+
+]

@@ -1,0 +1,37 @@
+[
+{
+  "key": "cartPageTitle",
+  "androidValue": "//android.widget.TextView[@text=\"YOUR CART\"]",
+  "androidType": "xpath",
+  "iosValue": "",
+  "iosType": ""
+},
+  {
+    "key": "cartAfterAddOneProduct",
+    "androidValue": "//android.widget.TextView[@text=\"1\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "cartButton",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-Cart\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "cartRemoveBtn",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-REMOVE\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "interactiveBadgeNumberTwo",
+    "androidValue": "//android.widget.TextView[@text=\"2\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  }
+]

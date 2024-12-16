@@ -1,0 +1,46 @@
+[
+  {
+    "key": "homePageMenuBtn",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-Menu\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "verifyProductPage",
+    "androidValue": "//android.widget.TextView[@text=\"PRODUCTS\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  }
+,
+  {
+    "key": "sauceLabsBackpackFirstProductName",
+    "androidValue": "//android.widget.TextView[@text=\"Sauce Labs Backpack\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "sauceLabsBackpackFirstProductPrice",
+    "androidValue": "//android.widget.TextView[@content-desc=\"test-Price\" and @text=\"$29.99\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "sauceLabsBackpackFirstProductAddToCartBtn",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "sauceLabsBackpackFirstProductRemoveBtn",
+    "androidValue": "//android.view.ViewGroup[@content-desc=\"test-REMOVE\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  }
+
+]
