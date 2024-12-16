@@ -828,22 +828,6 @@ public class StepImpl {
     }
 
 
-    @And("{string},<startPointX>,<finishPointX> kaydır baakalım")
-    public void sliderSwipe(String key, int startPointX, int finishPointX) {
-
-        int coordinateX = appiumDriver.manage().window().getSize().width;
-        int pointY = findElementByKey(key).getCenter().y;
-        int firstPointX = (coordinateX * startPointX) / 100;
-        int lastPointX = (coordinateX * finishPointX) / 100;
-
-        TouchAction action = new TouchAction(appiumDriver);
-        action
-                .press(PointOption.point(firstPointX, pointY))
-                .waitAction(WaitOptions.waitOptions(ofMillis(2000)))
-                .moveTo(PointOption.point(lastPointX, pointY))
-                .release().perform();
-
-    }
 
     @And("Verilen <x> <y> koordinatına tıkla")
     public void tapElementWithCoordinate(int x, int y) {
@@ -851,13 +835,7 @@ public class StepImpl {
         a2.tap(PointOption.point(x, y)).perform();
     }
 
-    @And("{string} li elementin  merkezine tıkla ")
-    public void tapElementWithKey(String key) {
 
-        Point point = findElementByKey(key).getCenter();
-        TouchAction a2 = new TouchAction(appiumDriver);
-        a2.tap(PointOption.point(point.x, point.y)).perform();
-    }
 
     @And("{string} li element varsa  <x> <y> koordinatına tıkla ")
     public void tapElementWithKeyCoordinate(String key, int x, int y) {
@@ -877,26 +855,7 @@ public class StepImpl {
         }
     }
 
-    @And("{string} li elementin  merkezine  press ile çift tıkla ")
-    public void pressElementWithKey(String key) {
 
-        Point point = findElementByKey(key).getCenter();
-        TouchAction a2 = new TouchAction(appiumDriver);
-        a2.press(PointOption.point(point.x, point.y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
-                .press(PointOption.point(point.x, point.y)).release().perform();
-
-    }
-
-
-    @And("{string} li elementin  merkezine double tıkla ")
-    public void pressElementWithKey2(String key) {
-        Actions actions = new Actions(appiumDriver);
-        actions.moveToElement(findElementByKey(key));
-        actions.doubleClick();
-        actions.perform();
-        appiumDriver.getKeyboard();
-
-    }
 
     @And("{string} li elementi rasgele sec")
     public void chooseRandomProduct(String key) {
@@ -915,55 +874,6 @@ public class StepImpl {
         Random random = new Random();
         int randomNumber = random.nextInt(productList.size());
         productList.get(randomNumber).click();
-    }
-
-
-    @And("{string} li elemente kadar {string} textine sahip değilse ve <timeout> saniyede bulamazsa swipe yappp")
-    public void swipeAndFindwithKey(String key, String text, int timeout) {
-
-
-        MobileElement sktYil1 = null;
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-        WebDriverWait wait = new WebDriverWait(appiumDriver, timeout);
-        int count = 0;
-        while (true) {
-            count++;
-            try {
-                sktYil1 = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(selectorInfo.getBy()));
-                if (text.equals("") || sktYil1.getText().trim().equals(text)) {
-                    break;
-                }
-            } catch (Exception e) {
-                logger.info("Bulamadı");
-
-            }
-            if (count == 8) {
-
-                Assert.fail("Element bulunamadı");
-            }
-
-            Dimension dimension = appiumDriver.manage().window().getSize();
-            int startX1 = dimension.width / 2;
-            int startY1 = (dimension.height * 75) / 100;
-            int secondX1 = dimension.width / 2;
-            int secondY1 = (dimension.height * 30) / 100;
-
-            TouchAction action2 = new TouchAction(appiumDriver);
-
-            action2
-                    .press(PointOption.point(startX1, startY1))
-                    .waitAction(WaitOptions.waitOptions(ofMillis(2000)))
-                    .moveTo(PointOption.point(secondX1, secondY1))
-                    .release()
-                    .perform();
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 
 
@@ -1018,65 +928,7 @@ public class StepImpl {
 
     }
 
-    @And("{string} li elementi bul <times> kere tıkla")
-    public void bulTikla(String key, int times) {
-        MobileElement mobileElement = findElementByKey(key);
-        for (int i = 0; i < times; i++) {
 
-            mobileElement.click();
-        }
-    }
-
-
-    @And("id li <id> elemetin {string} index değerini al ve {string} değerini yaz")
-    public void SetObjectByindex(String id, int index, String key) {
-        appiumDriver.findElements(By.id(id)).get(index).setValue(key);
-
-    }
-
-    @And("id li <id> elemetin {string} index değerini al ve elemente tıkla")
-    public void ClickObjectByindex(String id, int index) {
-        appiumDriver.findElements(By.id(id)).get(index).click();
-
-    }
-
-    @And("{string} li elementin <attributeName> attribute değerinin {string} e eşit olduğunu kontrol et ")
-    public void equalsAttributeValue(String key, String attributeName, String value) {
-        Assert.assertEquals(value, getAttribute(key, attributeName));
-        logger.info(key + " li elementin " + attributeName + " attribute değerinin " + value + " e eşit olduğu kontrol edildi");
-    }
-
-    String getAttribute(String key, String attributeName) {
-        return findElementByKey(key).getAttribute(attributeName);
-    }
-
-    @And("{string} li element sayfada bulunuyor mu ve disabled mı")
-    public void isExistAndDisabled(String key) {
-        boolean notTrue = !findElementByKey(key).isEnabled();
-        assertTrue("Element disabled değil.", notTrue);
-        logger.info(key + " elementin disabled olduğu doğrulandı.");
-    }
-    @And("Element yok mu kontrol et <key>")
-    public void getElementWithKeyIfNotExists(String key) throws InterruptedException {
-        boolean isNotExist = false;
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-        try{
-            appiumDriver.findElement(selectorInfo.getBy());
-            isNotExist = false;
-        }catch (NoSuchElementException e){
-            isNotExist = true;
-        }
-        assertTrue(selectorInfo.getBy().toString()+" elementi var", isNotExist);
-    }
-
-
-    @And("{string} li elemente {string} text değeri yazılabilir mi")
-    public boolean isTextBoxEditable(String key, String text) {
-        MobileElement element = findElementByKey(key);
-        element.setValue(text);
-        element.clear();
-        return true;
-    }
 
     @And("Android telefonda klavye üzerinden esc tuşuna bas")
     public void pressEscKeyForAndroid() {
@@ -1322,7 +1174,18 @@ public class StepImpl {
         // Eğer döngü tamamlanırsa ve element hala bulunamazsa, hata fırlat
         Assertions.fail(message);
     }
-
+    @And("Element yok mu kontrol et <key>")
+    public void getElementWithKeyIfNotExists(String key) throws InterruptedException {
+        boolean isNotExist = false;
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+        try{
+            appiumDriver.findElement(selectorInfo.getBy());
+            isNotExist = false;
+        }catch (NoSuchElementException e){
+            isNotExist = true;
+        }
+        assertTrue(selectorInfo.getBy().toString()+" elementi var", isNotExist);
+    }
 
 
 
