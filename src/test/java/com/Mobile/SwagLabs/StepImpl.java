@@ -5,7 +5,6 @@ import com.Mobile.SwagLabs.helper.StoreHelper;
 import com.Mobile.SwagLabs.model.SelectorInfo;
 import com.Mobile.SwagLabs.selector.Selector;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -18,23 +17,15 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import junit.framework.TestCase;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -231,30 +222,6 @@ public class StepImpl {
         findElementWithAssertion(By.xpath(".//*[contains(@text,'" + text + "')]")).click();
     }
 
-    @And("Pincode Değeri {string} e eşit olan elementli bul ve tıkla")
-    public void clickByTextonPincodeArea(String text) {
-        findElementWithAssertion(By.xpath("//XCUIElementTypeButton[@name='" + text + "']")).click();
-    }
-
-    @And("Pizza {string} e eşit olan elementli bul ve tıkla")
-    public void clickByTextonPizza(String text) {
-        findElementWithAssertion(By.xpath("//XCUIElementTypeStaticText[@name='" + text + "']")).click();
-    }
-
-    @And("içeriği {string} e eşit olan elementli bul ve tıkla")
-    public void clickByValue(String value) {
-        findElementWithAssertion(MobileBy.xpath(".//*[contains(@value,'" + value + "')]")).click();
-    }
-
-    @And("Değeri {string} e eşit olan {string}. elementi bul ve tıkla")
-    public void clickByText(String text, int index) {
-        findElementWithAssertion(By.xpath("(.//*[contains(@text,'" + text + "')])[" + index + "]")).click();
-    }
-
-    @And("içeriği {string} e eşit olan {string}. elementi bul ve tıkla")
-    public void clickByValue(String value, int index) {
-        findElementWithAssertion(MobileBy.xpath("(.//*[contains(@value,'" + value + "')])[" + index + "]")).click();
-    }
 
     @And("{string} elemente tıkla")
     public void clickByKey(String key) {
